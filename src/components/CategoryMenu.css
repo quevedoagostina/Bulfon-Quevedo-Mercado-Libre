@@ -1,0 +1,29 @@
+.category-menu {
+    position: relative;
+  }
+  
+  .category-menu span {
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .dropdown {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .dropdown a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .dropdown a:hover {
+    background-color: #f0f0f0;
+  }
+  
