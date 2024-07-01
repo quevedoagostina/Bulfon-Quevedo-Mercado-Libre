@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './ProductDetails.css';
+import { useCart } from '../components/CartContext'; // Asegúrate de importar el contexto
 
-const ProductDetails = ({ onAdd }) => {
+const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const { addToCart } = useCart(); // Usa el hook useCart para obtener la función addToCart
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -21,6 +23,11 @@ const ProductDetails = ({ onAdd }) => {
   }, [id]);
 
   if (!product) return <div>Loading...</div>;
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    alert('Producto añadido al carrito');
+  };
 
   return (
     <div className="product-details-container">
@@ -38,7 +45,7 @@ const ProductDetails = ({ onAdd }) => {
           <p className="product-price">${product.price}</p>
           {product.shipping.free_shipping && <p className="product-shipping">Envío Gratis</p>}
           <p className="product-description">{product.description}</p>
-          <button className="add-to-cart" onClick={() => onAdd(product)}>Añadir al carrito</button>
+          <button className="add-to-cart" onClick={() => handleAddToCart(product)}>Añadir al carrito</button>
           <button className="buy-now">Comprar ahora</button>
         </div>
       </div>

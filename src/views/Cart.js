@@ -31,6 +31,14 @@ const Cart = () => {
     }
   };
 
+  const handleCheckout = () => {
+    if (window.confirm('¿Estás seguro de que deseas finalizar la compra?')) {
+      setCartItems([]); // Limpiar el carrito
+      localStorage.removeItem('cartItems'); // Limpiar localStorage
+      alert('Compra realizada con éxito');
+    }
+  };
+
   return (
     <div className="cart">
       <h2>Carrito de Compras</h2>
@@ -45,7 +53,7 @@ const Cart = () => {
         </div>
       ))}
       <h2>Total: ${cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}</h2>
-      <button className="checkout-button" onClick={() => alert('Compra realizada con éxito')}>Finalizar Compra</button>
+      <button className="checkout-button" onClick={handleCheckout}>Finalizar Compra</button>
     </div>
   );
 };
