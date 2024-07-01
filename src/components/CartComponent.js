@@ -1,7 +1,7 @@
 import React from 'react';
-import './Cart.css';
+import './CartComponent.css';
 
-const Cart = ({ cartItems, onRemove, onAdd }) => (
+const CartComponent = ({ cartItems, onRemove, onAdd }) => (
   <div className="cart">
     <h2>Carrito de Compras</h2>
     {cartItems.length === 0 && <p>El carrito está vacío</p>}
@@ -19,4 +19,4 @@ const Cart = ({ cartItems, onRemove, onAdd }) => (
   </div>
 );
 
-export default Cart;
+export default CartComponent;

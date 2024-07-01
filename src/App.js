@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -6,9 +6,21 @@ import Home from './views/Home';
 import ProductDetails from './views/ProductDetails';
 import Checkout from './views/Checkout';
 import Category from './views/Category';
+import Cart from './views/Cart'; 
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem('cartItems'));
+    if (savedCart) {
+      setCartItems(savedCart);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const handleAddToCart = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
@@ -34,12 +46,10 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/product/:id" element={<ProductDetails onAdd={handleAddToCart} />} />
           <Route path="/category/:categoryId" element={<Category />} />
-          <Route
-            path="/checkout"
-            element={<Checkout cartItems={cartItems} onAdd={handleAddToCart} onRemove={handleRemoveFromCart} />}
-          />
+          <Route path="/checkout" element={<Checkout cartItems={cartItems} onAdd={handleAddToCart} onRemove={handleRemoveFromCart} />} />
+          <Route path="/cart" element={<Cart cartItems={cartItems} onAdd={handleAddToCart} onRemove={handleRemoveFromCart} />} />
         </Routes>
         <Footer />
       </div>

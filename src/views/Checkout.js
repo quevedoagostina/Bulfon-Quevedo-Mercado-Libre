@@ -1,5 +1,5 @@
 import React from 'react';
-import Cart from '../components/Cart';
+import Cart from './Cart';
 
 const Checkout = ({ cartItems, onRemove, onAdd }) => (
   <div>

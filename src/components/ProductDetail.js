@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './ProductDetails.css';
 
-const ProductDetails = () => {
+const ProductDetails = ({ onAdd }) => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
@@ -33,7 +33,7 @@ const ProductDetails = () => {
         <p className="product-price">${product.price}</p>
         {product.shipping.free_shipping && <p className="free-shipping">Envío Gratis</p>}
         <p className="product-description">{product.description}</p>
-        <button className="add-to-cart">Añadir al carrito</button>
+        <button className="add-to-cart" onClick={() => onAdd(product)}>Añadir al carrito</button>
         <button className="buy-now">Comprar ahora</button>
       </div>
     </div>
