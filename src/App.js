@@ -8,6 +8,7 @@ import Checkout from './views/Checkout';
 import Category from './views/Category';
 import Cart from './views/Cart'; 
 import { CartProvider } from './components/CartContext';
+import SearchResults from './components/SearchResults';
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -32,6 +33,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/search" element={<SearchResults />} />
             <Route path="/category/:categoryId" element={<Category />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/cart" element={<Cart />} />
